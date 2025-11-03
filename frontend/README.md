@@ -1,3 +1,5 @@
+live link - https://my-todo-list-frontend.netlify.app/
+
 first i am creating a frontend folder
 then i am creating a react application in side a folder using vite - npm create vite@latest.
 i am setup tailwind css in side vite.config.js
