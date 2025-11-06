@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Updata = ({ task, refreshTasks }) => {
-  const [completed, setCompleted] = useState(task.completed);
+const Updata = (props) => {
+  //  use state use kiya hai jo task complete or not ye batane ke liye hai 
+  const [completed, setCompleted] = useState(props.task.completed);
 
+  // update task function jo api call karke task complete ko true / false karega 
   const toggleComplete = async () => {
-    try {
-      await axios.put(`http://localhost:3000/updatetodo/${task._id}`, {
+      await axios.put(`https://my-todo-list-server.onrender.com/updatetodo/${props.task._id}`, {
         completed: !completed,
       });
       setCompleted(!completed);
-      refreshTasks(); // ✅ refresh list after update
-    } catch (error) {
-      console.error("Failed to update task status:", error);
-    }
+      props.refreshTasks(); 
+  
   };
 
   return (
@@ -23,7 +22,8 @@ const Updata = ({ task, refreshTasks }) => {
         className="text-xl focus:outline-none"
         title={completed ? 'Mark as Incomplete' : 'Mark as Complete'}
       >
-        {completed ? '✅' : '⭕'}
+        {/* task complete or not show karega */}
+        {completed ? <i class="ri-checkbox-circle-line text-green-400"></i> : <i className="ri-indeterminate-circle-line text-red-500"></i>}
       </button>
 
       <span
@@ -31,7 +31,7 @@ const Updata = ({ task, refreshTasks }) => {
           completed ? 'line-through text-gray-500' : 'text-black'
         }`}
       >
-        {task.taskName}
+        {props.task.taskName}
       </span>
     </div>
   );
