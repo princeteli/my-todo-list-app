@@ -1,15 +1,13 @@
 import axios from "axios";
 import React from "react";
 
-const Delete = ({ id, refreshTasks }) => {
+const Delete = (props) => {
+ 
+  // task ko api call karke delete kare ga
   const deleteTask = async () => {
-    try {
-      await axios.delete(`http://localhost:3000/deletetodo/${id}`);
-      console.log("Deleted task with id:", id);
-      refreshTasks(); // ✅ Refresh task list
-    } catch (error) {
-      console.error("Delete failed:", error);
-    }
+    await axios.delete(`https://my-todo-list-server.onrender.com/deletetodo/${props.id}`);
+    props.refreshTasks();
+
   };
 
   return (
@@ -18,7 +16,7 @@ const Delete = ({ id, refreshTasks }) => {
       className="text-red-500 text-xl hover:text-red-700 transition-colors"
       title="Delete task"
     >
-      🗑️
+      <i class="ri-delete-bin-6-line"></i>
     </button>
   );
 };
