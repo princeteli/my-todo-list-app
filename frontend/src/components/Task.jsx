@@ -3,32 +3,36 @@ import axios from "axios";
 import Delete from "./Delete";
 import Updata from "./Updata";
 
-const Task = ({ refresh, refreshTasks }) => {
+const Task = (props) => {
+// use state array for show task on todo app
   const [tasks, setTasks] = useState([]);
-
+  
+  // get task form data base using getTask function 
   const getTask = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/getalltodos");
+  
+      const res = await axios.get("https://my-todo-list-server.onrender.com/getalltodos")
       setTasks(res.data);
-    } catch (error) {
-      console.error("Error fetching tasks:", error);
-    }
+  
   };
 
+  // use effect for getTask function calls karne ke liye
   useEffect(() => {
     getTask();
-  }, [refresh]);
+  }, [props.refresh]);
 
   return (
+    
     <div className="max-w-md mx-auto">
       <ul className="space-y-3">
+           {/*  tasks show karega tasks array se  */}
         {tasks.map((task, idx) => (
           <li
             key={idx}
-            className="flex items-center justify-between bg-white p-3 rounded shadow"
+            className="flex items-center justify-between  p-3 rounded shadow"
           >
-            <Updata task={task} refreshTasks={refreshTasks} />
-            <Delete id={task._id} refreshTasks={refreshTasks} />
+            {/* update task or delete task components */}
+            <Updata task={task} refreshTasks={props.refreshTasks} />
+            <Delete id={task._id} refreshTasks={props.refreshTasks} />
           </li>
         ))}
       </ul>
