@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Task from "./Task";
+import TaskList from "./TaskList";
 
 const Header = () => {
 
@@ -47,7 +47,7 @@ const Header = () => {
       </div>
 
       {/*  task list component   hai header ke baad */}
-      <Task refresh={Refresh} refreshTasks={refreshTasks} />
+      <TaskList refresh={Refresh} refreshTasks={refreshTasks} />
     </div>
   );
 };
