@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Delete from "./Delete";
-import Updata from "./Updata";
+import UpdateList from "./UpdateList";
 
 const TaskList = (props) => {
 // use state array for show task on todo app
@@ -31,7 +31,7 @@ const TaskList = (props) => {
             className="flex items-center justify-between  p-3 rounded shadow"
           >
             {/* update task or delete task components */}
-            <Updata task={task} refreshTasks={props.refreshTasks} />
+            <UpdateList task={task} refreshTasks={props.refreshTasks} />
             <Delete id={task._id} refreshTasks={props.refreshTasks} />
           </li>
         ))}
