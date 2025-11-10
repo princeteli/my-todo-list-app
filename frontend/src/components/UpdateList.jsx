@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Updata = (props) => {
+const UpdateList = (props) => {
   //  use state use kiya hai jo task complete or not ye batane ke liye hai 
   const [completed, setCompleted] = useState(props.task.completed);
 
@@ -37,4 +37,4 @@ const Updata = (props) => {
   );
 };
 
-export default Updata;
+export default UpdateList;
